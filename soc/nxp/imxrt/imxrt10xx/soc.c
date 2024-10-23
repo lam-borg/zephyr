@@ -34,9 +34,12 @@
 		     #podf " is out of supported range (" #a ", " #b ")")
 
 #ifdef CONFIG_INIT_ARM_PLL
+
+#define DEFAULT_LOOPDIV 100
+
 /* ARM PLL configuration for RUN mode */
 const clock_arm_pll_config_t armPllConfig = {
-	.loopDivider = 100U
+	.loopDivider = DT_PROP_OR(DT_NODELABEL(arm_pll), clock_div, DEFAULT_LOOPDIV) * 2,
 };
 #endif
 
